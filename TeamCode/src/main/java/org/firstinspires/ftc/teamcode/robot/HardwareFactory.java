@@ -21,7 +21,7 @@ public class HardwareFactory {
         Map<Motors, Motor> motors = createMotors(hardwareMap);
         MotorGroup flywheel = createFlywheel(motors);
 
-        return RobotHardware(motors, flywheel);
+        return new RobotHardware(motors, flywheel);
     }
 
     private Map<Motors, Motor> createMotors(HardwareMap hardwareMap) {

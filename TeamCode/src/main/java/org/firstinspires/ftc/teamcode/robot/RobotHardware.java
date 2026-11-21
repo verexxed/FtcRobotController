@@ -13,7 +13,7 @@ public class RobotHardware {
 
 
     public RobotHardware(Map<Motors, Motor> motors, MotorGroup flywheel) {
-        this.motors = Map.copyOf(motors);
+        this.motors = motors;
         this.flywheel = flywheel;
     }
 
