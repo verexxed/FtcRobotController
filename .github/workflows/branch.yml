@@ -1,0 +1,29 @@
+# YML file for enforcing branch rules
+name: Branch name
+
+# Triggers that yml fires on
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+# Permissions
+permissions:
+  contents: read
+  pull-requests: read
+
+# Jobs
+jobs:
+  check-branch-name:
+    name: Check branch name
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate branch name
+        env:
+          BRANCH_NAME: ${{ github.head_ref }}
+        run: |
+          if [[ ! "$BRANCH_NAME" =~ ^(feature|fix|docs|chore|experiment)/[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
+            echo "Invalid branch name: $BRANCH_NAME"
+            echo "Use: feature/<description>, fix/<description>, docs/<description>, chore/<description>, or experiment/<description>"
+            echo "Example: feature/vision-alignment"
+            exit 1
+          fi
