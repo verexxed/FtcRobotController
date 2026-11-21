@@ -14,5 +14,4 @@
 - [ ] Tested on the robot
 - [ ] Not tested on the robot (explain why below)
 
-Redpanda&L1ve
 **Test notes:**
