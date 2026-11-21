@@ -1,0 +1,43 @@
+# YML file for creating an APK file
+name: Build FTC Release APK
+
+# Triggers that yml fires on
+on:
+  release:
+    types: [published]
+
+# Permissions
+permissions:
+  contents: write
+
+# Jobs
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Out Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set Up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build APK
+        uses: ./gradlew assembleDebug
+
+      - name: Attach APK To Release
+        env:
+          GH_TOKEN: ${{ github.com }}
+        run: |
+          APK=$(find . -path "*/build/outputs/apk/*/*.apk" -print -quit)
+          if [ -z "$APK" ]; then
+            echo "No APK found"
+            exit 1
+          fi
+          gh release upload "${{ github.event.release.tag_name }}" "$APK"

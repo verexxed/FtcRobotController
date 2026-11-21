@@ -1,0 +1,20 @@
+# YML file for adding labels
+name: Label Pull Requests
+
+# Triggers that yml fires on
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+# Permissions
+permissions:
+  contents: read
+  pull-requests: write
+
+# Jobs
+jobs:
+  label:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/labeler@v5

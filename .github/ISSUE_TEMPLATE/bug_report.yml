@@ -1,0 +1,102 @@
+# YML file for a bug report template
+name: Bug report
+description: Report a problem with robot code or repository setup
+
+# Title of the bug report
+title: "[🐛Bug]: "
+
+# Labels
+labels:
+  - bug
+
+# Body
+body:
+  - type: markdown
+
+    attributes:
+      value: |
+        Share enough detail for the team to reproduce the issue. Remove personal information from logs or screenshots before attaching them.
+
+  - type: textarea
+    id: what-happened
+
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+      placeholder: Tell us what you saw...
+
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+
+    attributes:
+      label: Steps to reproduce
+      description: List the steps that trigger the problem.
+
+      placeholder: |
+        1. Open ...
+        2. Run ...
+        3. Observe ...
+
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+
+    attributes:
+      label: Where does it happen?
+
+      options:
+        - Autonomous
+        - TeleOp
+        - Build or setup
+        - Other / unsure
+
+    validations:
+      required: true
+
+  - type: input
+    id: opmode
+
+    attributes:
+      label: OpMode
+      description: Name of the affected OpMode, if applicable.
+      placeholder: e.g. RedDriveAuto
+
+    validations:
+      required: false
+
+  - type: input
+    id: sdk-version
+
+    attributes:
+      label: FTC SDK version
+      description: Find this in the project's README or Gradle files.
+      placeholder: e.g. 11.0
+
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+
+    attributes:
+      label: Logs or screenshots
+      description: Paste relevant log output or attach a screenshot.
+      render: text
+
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+
+    attributes:
+      label: Additional context
+      description: Robot configuration, hardware involved, or anything else that may help.
+
+    validations:
+      required: false
