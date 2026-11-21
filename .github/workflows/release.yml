@@ -13,6 +13,7 @@ permissions:
 # Jobs
 jobs:
   build:
+    name: Release
     runs-on: ubuntu-latest
 
     steps:
